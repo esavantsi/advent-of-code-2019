@@ -12,10 +12,10 @@
             (slurp)
             (str/split #",")))))
 
-(defn- run-operation [memory operation address1 address2 target]
+(defn run-operation [memory operation address1 address2 target]
   (assoc memory target (operation (nth memory address1) (nth memory address2))))
 
-(defn- opcode->operation [opcode]
+(defn opcode->operation [opcode]
   (case opcode
     1 +
     2 *))
