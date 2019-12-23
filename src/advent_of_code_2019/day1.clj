@@ -1,15 +1,17 @@
 (ns advent-of-code-2019.day1
   (:require [clojure.string :as str]))
 
-(defn fuel [mass] (-> mass
-                      (/ 3)
-                      int
-                      (- 2)))
+(defn fuel [mass]
+  (-> mass
+      (/ 3)
+      int
+      (- 2)))
 
-(defn get-lines [filename] (map
-                            #(Integer/parseInt %)
-                            (str/split-lines
-                             (slurp filename))))
+(defn get-lines [filename]
+  (map
+   #(Integer/parseInt %)
+   (str/split-lines
+    (slurp filename))))
 
 ; 1.1
 (reduce + (map fuel (get-lines "resources/input-day-1.txt")))

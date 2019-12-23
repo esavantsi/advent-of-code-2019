@@ -1,14 +1,16 @@
-(ns advent-of-code-2019.day2 (:require [clojure.string :as str]))
+(ns advent-of-code-2019.day2
+  (:require [clojure.string :as str]))
 
 (defn create-computer [instruction-pointer memory-dump]
   {:ip instruction-pointer
    :memory memory-dump})
 
-(defn get-program [filename] (vec (map
-                                   #(Integer/parseInt %)
-                                   (-> filename
-                                       (slurp)
-                                       (str/split #",")))))
+(defn get-program [filename]
+  (vec (map
+        #(Integer/parseInt %)
+        (-> filename
+            (slurp)
+            (str/split #",")))))
 
 (defn- run-operation [memory operation address1 address2 target]
   (assoc memory target (operation (nth memory address1) (nth memory address2))))
@@ -30,11 +32,13 @@
                               (run-operation memory (opcode->operation opcode) address1 address2 address3)))
       computer)))
 
-(defn computer-output [computer] (nth (computer :memory) 0))
+(defn computer-output [computer]
+  (nth (computer :memory) 0))
 
-(defn set-state [noun verb computer] (create-computer (computer :ip) (-> (computer :memory)
-                                                                         (assoc 1 noun)
-                                                                         (assoc 2 verb))))
+(defn set-state [noun verb computer]
+  (create-computer (computer :ip) (-> (computer :memory)
+                                      (assoc 1 noun)
+                                      (assoc 2 verb))))
 
 ; 2.1
 (->> (create-computer 0 (get-program "resources/input-day-2.txt"))
@@ -43,10 +47,11 @@
      (computer-output))
 
 ; 2.2
-(defn noun-verb->output [noun verb] (->> (create-computer 0 (get-program "resources/input-day-2.txt"))
-                                         (set-state noun verb)
-                                         (execute)
-                                         (computer-output)))
+(defn noun-verb->output [noun verb]
+  (->> (create-computer 0 (get-program "resources/input-day-2.txt"))
+       (set-state noun verb)
+       (execute)
+       (computer-output)))
 
 (->> (for [noun (range 99)
            verb (range 99)]
