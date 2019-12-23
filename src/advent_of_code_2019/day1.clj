@@ -1,4 +1,4 @@
-(ns advent-of-code-2019.core
+(ns advent-of-code-2019.day1
   (:require [clojure.string :as str]))
 
 (defn fuel [mass] (-> mass
