@@ -12,7 +12,7 @@
                              (slurp filename))))
 
 ; 1.1
-(reduce + (map fuel (get-lines "resources/input.txt")))
+(reduce + (map fuel (get-lines "resources/input-day-1.txt")))
 
 (defn total-fuel [mass]
   (->> mass
@@ -22,4 +22,4 @@
        (reduce +)))
 
 ; 1.2
-(reduce + (map total-fuel (get-lines "resources/input.txt")))
+(reduce + (map total-fuel (get-lines "resources/input-day-1.txt")))
